@@ -1,0 +1,90 @@
+﻿.pagination {
+    
+    text-align: center;
+    justify-content:space-between
+}
+
+p{
+    align-items:center !important;
+    font-weight:600;
+    margin:0px
+}
+
+.pagination button {
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        color: #495057;
+        padding: 7px 15px 7px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+}
+.pagination button:hover {
+    background-color: #e9ecef;
+}
+.currentPage {
+    
+    font-weight:400;
+    margin-right: 10px;
+    padding:7px 15px 7px 15px;
+    background-color:gray;
+    color:#fff;
+}
+.action {
+    font-weight: 400;
+    margin-right: 10px;
+    padding: 7px 15px 7px 15px;
+    background-color: #2742A2;
+    color: #fff;
+}
+#bankDropdownContainer {
+    max-height: 50px; /* Độ cao cố định */
+    overflow-y: auto; /* Cho phép cuộn dọc nếu danh sách quá dài */
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 33px;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+
+.toggle-input:checked + .toggle-label {
+    background-color: #2196F3; /* Màu của switch khi gạt sang phải */
+}
+
+.toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 21px;
+    width: 21px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-input:checked + .toggle-label:before {
+    transform: translateX(25px); /* Di chuyển switch sang phải */
+}
+.toast-success {
+    background-color: #6fbf73; /* Màu xanh lá cây nhạt */
+    
+}
+

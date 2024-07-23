@@ -1,0 +1,183 @@
+﻿#back_to_list {
+    border: 1px #3333;
+    text-align: center;
+}
+
+#back_to_list a {
+    text-decoration: none;
+    color: #808080;
+}
+
+#back_to_list:hover {
+    background-color: chartreuse;
+    border-radius: 0px 0px 10px 10px
+}
+
+sup {
+    color: red
+}
+
+#border {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 10px;
+    background-color: #FFF;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+h2 {
+    text-align: center
+}
+
+#function a {
+    border: 2px solid #808080;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#account {
+    margin-left: 20px;
+    margin-right:20px;
+    margin-top:10%
+}
+#account_user {
+    display: flex;
+    border: 1px solid gray;
+    align-items: center;
+    height: 40px;
+    padding: 2px;
+}
+
+#account_user input {
+    margin-bottom: 0px;
+    margin: 2px
+}
+#password_user {
+    display: flex;
+    border: 1px solid gray;
+    align-items: center;
+    height: 40px;
+    padding: 2px;
+}
+
+#password_user input{
+    margin-bottom:0px;
+    margin:2px;
+}
+
+.form-floating {
+    background-color: #ffff;
+}
+
+#login-submit{
+    width:100%;
+    background-color:#2742A2
+}
+
+#login-submit:hover {
+    border-radius: 10px;
+    background-color: #21df35;
+}
+
+#registerForm {
+    margin-left: 42px;
+}
+
+
+button:hover {
+    border-radius: 10px;
+    background-color: #21df35
+}
+
+#inputphone {
+    display: flex;
+}
+
+#inputphone input {
+    width: 310px;
+}
+
+#sendotp {
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+}
+#navbarsmo{
+margin-bottom:30%
+}
+#logosmo {
+    width: 200px;
+    display:block;
+    margin:0 auto;
+    padding-top:30%;
+    
+}
+ h3{
+    color:#2742A2;
+    font-weight:700
+}
+.form-floating label {
+    font-size: smaller;
+}
+
+.row {
+    margin: 0 auto
+}
+
+.checkbox label {
+    display: flex;
+    align-items: center;
+}
+.checkbox {
+   display:flex;
+   justify-content:space-between;
+}
+.checkbox a {
+        
+    color: #2742A2;
+}
+
+.checkbox input[type="checkbox"] {
+    margin-right: 5px; /* Điều chỉnh khoảng cách giữa checkbox và chữ */
+}
+
+.checkbox-text {
+    margin-bottom: 0; /* Đảm bảo không có khoảng cách dư thừa dưới chữ */
+}
+#support{
+    font-size:small;
+    display:flex;
+    justify-content:space-between;
+    padding-top:10px
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+.border-danger {
+    border: 1px solid red !important;
+}
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 55%;
+    /*transform: translateY(-50%);*/
+    cursor: pointer;
+    color: gray;
+}
+.form-control{
+    border-radius: 10px !important;
+}

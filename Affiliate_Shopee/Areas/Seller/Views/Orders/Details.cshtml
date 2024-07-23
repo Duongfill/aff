@@ -1,0 +1,91 @@
+﻿@model Affiliate_Shopee.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Seller/Views/Shared/_Layout_Seller.cshtml";
+}
+<div style="text-align:center">
+    <h4>Chi tiết hoàn tiền</h4>
+    <hr />
+    <div>
+        <h5>Trạng thái</h5>
+        @Html.DisplayFor(model => model.Status)
+    </div>
+    <div>
+        <h5>Tài khoản nhận hoàn tiền</h5>
+        @ViewBag.IdBank - @ViewBag.NameBank
+    </div>
+    <div>
+        <h5>Ảnh đơn hàng & review</h5>
+
+    </div>
+@*     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Deal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Deal.Id)
+        </dd>
+        <dt class="col-sm-2">
+           Số lượng
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deal.Slot)
+        </dd>
+        <dt class="col-sm-2">
+            Ngày tạo deal
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deal.CreatedAt)
+        </dd>
+        <dt class="col-sm-2">
+            Trạng thái
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+    <h3>Thông tin thêm</h3>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Giá bán: 
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deal.ShopeePrice) vnđ
+        </dd>
+        <dt class="col-sm-2">
+            Giá hoàn:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deal.RefundPrice) vnđ
+        </dd>
+        <dt class="col-sm-2">
+            STK:
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.IdBank - @ViewBag.NameBank
+        </dd>
+    </dl> *@
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

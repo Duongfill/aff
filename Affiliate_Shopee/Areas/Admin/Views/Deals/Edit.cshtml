@@ -1,0 +1,90 @@
+﻿@model Affiliate_Shopee.Models.Deal
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/css/deal_create.css" />
+<h5 style="font-size:20px;margin-left:10px;color:#333;font-weight:700">Thông tin deal</h5>
+@* <h5 style="font-size:15px;margin-left:10px;color:#333">Kênh người bán > Sửa thông tin deal</h5> *@
+<hr />
+<div>
+    <div class="row" style="margin:20px;justify-content:center">
+        <div class="col-md-4">
+            <form asp-action="Edit" method="post">
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label">Trạng thái hiện tại: @Html.DisplayFor(model => model.Status)</label>
+                    <select asp-for="Status" class="form-control">
+                        <option value="Đang hoạt động">Duyệt deal</option>
+                        <option value="Khóa deal">Khóa deal</option>
+                        <option value="Đang hoạt động">Bỏ khóa</option>
+                    </select>
+                </div>
+                <input type="hidden" asp-for="Status" />
+                <input type="submit" class="btn btn-primary" value="Lưu" />
+            </form>
+            <div class="form-group">
+                <label asp-for="ImageDeal" class="control-label">Hình ảnh: <span style="color:red">*</span></label>
+                <div style="display:flex">
+                    @if (!string.IsNullOrEmpty(Model.ImageDeal))
+                    {
+                        <img src="~/image/imagesellerdeals/@Model.ImageDeal" style="width:100px;height:100px;margin-left:5px" />
+                    }
+                    else
+                    {
+                        <span>Không có ảnh</span>
+                    }
+                </div>
+                <span id="ImageDealError" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Tên sản phẩm: </label><br />
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="form-group">
+                <label asp-for="ShopeeLink" class="control-label">Link sản phẩm trên Shoppe:</label> <br />
+                <a href="@Model.ShopeeLink" target="_blank">@Model.ShopeeLink</a>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slot" class="control-label">Số lượng Slot:</label>
+                @Html.DisplayFor(model => model.Slot)
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Ghi chú: </label>
+                @Html.DisplayFor(model => model.Note)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ShopeePrice" class="control-label">Giá trên sàn: </label>
+                @Html.DisplayFor(model => model.ShopeePrice) vnđ
+            </div>
+            <div class="form-group">
+                <label asp-for="RefundPrice" class="control-label">Số tiền hoàn lại:  </label>
+                @Html.DisplayFor(model => model.RefundPrice) vnđ
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label">Danh mục Deal: </label>
+                @Html.DisplayFor(model => model.Category.Name)
+            </div>
+            <div class="form-group">
+                <label asp-for="IsFreeship" class="control-label">Free Ship Extra: </label>
+                @Html.DisplayFor(model => model.IsFreeship)
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label">Khu vực của shop: </label>
+                @Html.DisplayFor(model => model.Location)
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Loại hết hạn của Deal:<span style="color:red">*</span> </label> <br />
+                @Html.DisplayFor(model => model.DealExpiredAt)
+            </div>
+        </div>
+        <input type="hidden" id="Nameimg" name="Nameimg" />
+    </div>
+</div>
+

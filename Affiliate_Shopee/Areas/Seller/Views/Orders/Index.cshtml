@@ -1,0 +1,184 @@
+﻿@model X.PagedList.IPagedList<Affiliate_Shopee.Areas.Seller.Controllers.OrdersController.OrderViewModel>
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Seller/Views/Shared/_Layout_Seller.cshtml";
+    var i = 1;
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="~/css/sellerDealIndex.css" />
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <h4 style="font-weight:700">Duyệt ảnh và hoàn tiền</h4>
+            <h6>Người bán > Duyệt ảnh và Hoàn tiền</h6>
+        </div>
+    </div>
+    <div style="background-color:#f5f5f5;margin:2px;padding:10px">
+        <div class="row" style="justify-content:center">
+            <div class="col-md-2" style="padding-right:0px">
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="textsearch" placeholder="Mã Deal" data-page-number="@Model.PageNumber">
+                </div>
+            </div>
+            <div class="col-md-2" style="padding-right:0px">
+                <div class="input-group mb-3">
+                    <select id="statusDropdown" class="form-select" style="width:100%;" data-page-number="@Model.PageNumber">
+                        <option value="">Chọn trạng thái</option>
+                        <option value="Chờ duyệt">Chờ duyệt</option>
+                        <option value="Chờ hoàn tiền">Chờ hoàn tiền</option>
+                        <option value="Từ chối đánh giá">Từ chối đánh giá</option>
+                        <option value="Đã hoàn tiền">Đã hoàn tiền</option>
+                        <option value="All">Tất cả</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2" style="padding-right:0px">
+                <div class="input-group mb-3" id="bankDropdownContainer">
+                    <select id="bankDropdown" class="form-select" style="width:100%" data-page-number="@Model.PageNumber">
+                        <option value="">Ngân hàng </option>
+                        <option value="BIDV">Ngân hàng Đầu tư và Phát triển</option>
+                        <option value="AGRIBANK">Ngân hàng AGRIBANK</option>
+                        <option value="TECHCOMBANK">Ngân hàng TECHCOMBANK</option>
+                        <option value="TP Bank">Ngân hàng Tiên Phong</option>
+                        <option value="MB Bank">Ngân hàng Quân đội</option>
+                        <option value="VP BANK">Ngân hàng Thịnh Vượng</option>
+                        <option value="VIETCOMBANK">Ngân hàng VIETCOMBANK</option>
+                        <option value="VP BANK">Ngân hàng Thịnh Vượng</option>
+                        <option value="VIETCOMBANK">Ngân hàng VIETCOMBANK</option>
+                        <option value="VP BANK">Ngân hàng Thịnh Vượng</option>
+                        <option value="VIETCOMBANK">Ngân hàng VIETCOMBANK</option>
+                        <option value="All">Tất cả</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2" style="padding-right:0px">
+
+                <div class="input-group">
+                    <input type="date" class="form-control" id="createdAtInput">
+                </div>
+            </div>
+            <div class="col-md-2" style="padding-right:0px">
+
+                <div class="input-group">
+                    <input type="date" class="form-control" id="createdAtInputTo">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    <button id="filterButton" class="btn btn-primary" style="margin-right:5px;border-radius:10px"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button id="cancelButton" class="btn btn-danger" style="margin-right:5px;border-radius:10px"><i class="fa-solid fa-rotate-right"> </i></button>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr style="text-align:center">
+                                <th>STT</th>
+                                <th>Tên khách hàng</th>
+                                <th>Mã Deal</th>
+                                <th>Tên deal</th>
+                                <th>Tài khoản nhận hoàn tiền</th>
+                                <th>Ngày đăng ký lượt mua</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="text-align:center">
+                                        <td>@(((Model.PageNumber - 1) * Model.PageSize) + (i))</td>
+                                        <td>@item.UserName</td>
+                                        <td><a asp-action="Edit" asp-controller="Orders" asp-route-id="@item.OrderId">@(Html.DisplayFor(modelItem => item.Code))</a></td>
+                                        <td style="text-align:left">@item.DealName</td>
+                                        <td>
+                                            Chuyển khoản: <br />
+                                            STK:  @item.IdBank <br />
+                                            Ngân Hàng: @item.NameBank
+                                        </td>
+                                        <td>@string.Format("{0:dd/MM/yyyy HH:mm:ss}", item.CreatedAt)</td>
+                                        <td>
+                                            <div style="border-radius:10px;width:150px;margin:0 auto;color:white;background-color:
+                                         @if (item.Status == "Chờ duyệt")
+                                         {
+                                    <text>#3897E9</text>
+                                    }
+                                    else if (item.Status == "Chờ hoàn tiền")
+                                    {
+                                        <text>#2A2A86</text>
+                                    }
+                                    else if (item.Status == "Từ chối đánh giá")
+                                    {
+                                        <text>#660000</text>
+                                    }
+                                    else if(item.Status == "Đã hoàn tiền")
+                                    {
+                                        <text>#028E02</text>
+                                    }
+                                                                        else if(item.Status == "Đã nhận tiền")
+                                    {
+                                        <text>#90CAFF</text>
+                                    };">@item.Status</div>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="7" style="text-align: center;">Không có dữ liệu.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                @if (Model.HasPreviousPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1,textsearch = ViewBag.TextSearch, status = ViewBag.Status,todate = ViewBag.ToDate, createdat = ViewBag.CreatedAt, bankname = ViewBag.BankName })" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                }
+                                @for (var pageNumber = 1; pageNumber <= Model.PageCount; pageNumber++)
+                                {
+                                    <li class="page-item @(pageNumber == Model.PageNumber ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = pageNumber,textsearch = ViewBag.TextSearch, status = ViewBag.Status, todate = ViewBag.ToDate,createdat = ViewBag.CreatedAt, bankname = ViewBag.BankName })">@pageNumber</a>
+                                    </li>
+                                }
+                                @if (Model.HasNextPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1,textsearch = ViewBag.TextSearch, status = ViewBag.Status,todate = ViewBag.ToDate, createdat = ViewBag.CreatedAt, bankname = ViewBag.BankName })" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/sellerOrder.js"></script>
+
+}

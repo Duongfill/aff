@@ -1,0 +1,78 @@
+﻿@model Affiliate_Shopee.Models.AspNetUser
+
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/css/homeIndex.css" />
+<script src="../bizweb.dktcdn.net/100/270/860/themes/606449/assets/appear24cb.js?1705895589400" type="text/javascript"></script>
+
+<section class="awe-section-3">
+    <div class="container">
+        <div id="box-wrapper" style="background-color: white;">
+            <div class="container">
+                <div class="row">
+                    <div class="details-product clearfix" style="padding-top:20px;">
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            <div>
+                                <h3 style="text-align:center">Hồ sơ thông tin cá nhân</h3>
+                                <h4 style="text-align:center">Quản lý thông tin hồ sơ để bảo mật tài khoản</h4>
+                            </div>
+                            <div class="row" style="width:50%;margin:0 auto;">
+                                <div class="col-xs-12 col-sm-12 col-md-12" style="margin:0 auto" id="ima">
+                                    <form asp-action="UpdateProfile" method="post">
+                                        <input asp-for="Id" class="form-control" type="hidden"/>
+                                        <div class="form-group">
+                                            <label for="Name">Tên:</label>
+                                            <input asp-for="UserName" class="form-control" style="border-radius:10px" />
+                                            <span asp-validation-for="UserName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Email">Email:</label>
+                                            <input asp-for="Email" class="form-control" style="border-radius:10px" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PhoneNumber">Số điện thoại:</label>
+                                            <input asp-for="PhoneNumber" class="form-control" readonly style="border-radius:10px" />
+                                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="NameBank">Ngân hàng:</label>
+                                            <input asp-for="NameBank" class="form-control" style="border-radius:10px" />
+                                            <span asp-validation-for="NameBank" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="IdBank">Số tài khoản:</label>
+                                            <input asp-for="IdBank" class="form-control" style="border-radius:10px" />
+                                            <span asp-validation-for="IdBank" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group" style="text-align: center;">
+                                            <div style="display: inline-block;">
+                                                <input type="submit" value="Cập nhật" class="btn btn-primary"  style="border-radius: 10px;background-color:#2742A2" />
+                                            </div>
+                                        </div>
+                                        <input asp-for="Discriminator" class="form-control" type="hidden"value="Người mua"/>
+                                        <input asp-for="PhoneNumberConfirmed" class="form-control" type="hidden" true />
+                                        <input asp-for="EmailConfirmed" class="form-control" type="hidden" true/>
+                                        <input asp-for="TwoFactorEnabled" class="form-control" type="hidden" true />
+                                        <input asp-for="LockoutEnabled" class="form-control" type="hidden" true />
+                                        <input asp-for="AccessFailedCount" class="form-control" type="hidden"value ="0" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,177 @@
+﻿@model Affiliate_Shopee.Models.Deal
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Seller/Views/Shared/_Layout_Seller.cshtml";
+}
+<link rel="stylesheet" href="~/css/deal_create.css" />
+<div>
+    <h5 style="font-size:20px;margin-left:10px;color:#333;font-weight:700">Sửa thông tin deal</h5>
+    <h5 style="font-size:15px;margin-left:10px;color:#333"><a href="/Seller/Deals/Index" style="font-weight:600;color:#333">Deal của tôi</a> > Sửa thông tin deal</h5>
+</div>
+
+
+<hr />
+@if (TempData["Message"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            toastr.info('@TempData["Message"]');
+        });
+    </script>
+}
+<div>
+    <div>
+
+        <form asp-action="Edit" id="myForm" class="row" method="post" style="margin:20px;justify-content:center" accept-charset="UTF-8" enctype="multipart/form-data">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ImageDeal" class="control-label">Hình ảnh: <span style="color:red">*</span> </label>
+                    <div style="display:flex">
+                        <label for="ImgDeal" id="uploadLabel" style="width:100px;overflow:hidden;height:100px;border:1px solid gray;color:gray;display:flex;flex-direction:column;align-items:center">
+                            <span style="padding-top:15px"><i class="fa-solid fa-plus"></i></span>
+                            <span>Tải ảnh lên</span>
+                        </label>
+                        <input asp-for="ImageDeal" class="form-control" style="display:none" type="file" name="ImgDeal" id="ImgDeal" onchange="getFileName(event)" accept="image/*" />
+                        @* <img src="~/image/imagesellerdeals/@Model.ImageDeal" style="width:100px;height:100px;margin-left:5px" /> *@
+                        @if (!string.IsNullOrEmpty(Model.ImageDeal))
+                        {
+                            <img src="~/image/imagesellerdeals/@Model.ImageDeal" style="width:100px;height:100px;margin-left:5px" />
+                        }
+                        else
+                        {
+                            <span>Không có ảnh</span>
+                        }
+                    </div>
+                    <span id="ImageDealError" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Tên sản phẩm: <span style="color:red">*</span> </label>
+                    <input asp-for="Name" class="form-control" placeholder="Tên sản phẩm" id="Name" />
+                    <span id="nameDealError" class="text-danger">@ViewBag.ErrorName</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShopeeLink" class="control-label">Link sản phẩm trên Shoppe:<span style="color:red">*</span></label>
+                    <input asp-for="ShopeeLink" class="form-control" id="ShopeeLink" placeholder="Link URL: https://shopee.vn/..... " />
+                    <span id="linkShopeeError" class="text-danger">@ViewBag.ErrorLink</span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Slot" class="control-label">Số lượng Slot:<span style="color:red">*</span></label>
+                    <input asp-for="Slot" class="form-control" placeholder="0" id="Slot" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                    <span id="slotError" class="text-danger">@ViewBag.ErrorSlot</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShopeePrice" class="control-label">Giá trên sàn:<span style="color:red">*</span> </label>
+                    <input asp-for="ShopeePrice" class="form-control" id="ShopeePrice" type="number" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                    <span id="ShopeePriceError" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RefundPrice" class="control-label">Số tiền hoàn lại:<span style="color:red">*</span> </label>
+                    <input asp-for="RefundPrice" class="form-control" id="RefundPrice" type="number" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                    <span id="RefundPriceError" class="text-danger">@ViewBag.ErrorRefundPrice</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label">Ghi chú: </label>
+                    <input asp-for="Note" class="form-control" id="Note" />
+                    <span id="NoteError" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label">Danh mục Deal:<span style="color:red">*</span> </label>
+                    <select asp-for="CategoryId" class="form-control" id="CategoryId" asp-items="ViewBag.CategoryId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsFreeship" class="control-label">Free Ship Extra:<span style="color:red">*</span></label>
+                    <div class="form-check">
+                        <input asp-for="IsFreeship" class="form-check-input" type="radio" value="0" name="isfreeship" checked='@(Model.IsFreeship == 0 ? "checked" : null)' />
+                        <label class="form-check-label">Không</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="IsFreeship" class="form-check-input" type="radio" name="isfreeship" value="1" checked='@(Model.IsFreeship == 1 ? "checked" : null)' />
+                        <label class="form-check-label">Có</label>
+                    </div>
+                    <span asp-validation-for="IsFreeship" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location" class="control-label">Khu vực của shop:<span style="color:red">*</span> </label>
+                    <div>
+                        <div>
+                            <label><input type="radio" asp-for="Location" name="location" value="Hà nội" checked='@(Model.Location == "Hà nội" ? "checked" : null)' /> Hà Nội</label>
+                        </div>
+                        <div>
+                            <label><input type="radio" asp-for="Location" name="location" value="TP.Hồ Chí Minh" checked='@(Model.Location == "TP. Hồ Chí Minh" ? "checked" : null)' /> TP. Hồ Chí Minh</label>
+                        </div>
+                        <div>
+                            <label><input type="radio" asp-for="Location" name="location" value="Khu vực khác" checked='@(Model.Location == "Khu vực khác" ? "checked" : null)' /> Khu vực khác</label>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Loại hết hạn của Deal:<span style="color:red">*</span> </label>
+                    <div>
+                        <div class="form-check">
+                            <input asp-for="DealExpired" class="form-check-input" type="radio" value="1" name="DealExpired" id="dealexpired" checked="@((Model.DealExpired == 1) ? "checked" : null)" onclick="toggleDateInput('@Model.DealExpired')">
+                            <label class="form-check-label" for="expirationType1">Hết slot</label>
+                        </div>
+                        <div class="form-check">
+                            <input asp-for="DealExpired" class="form-check-input" type="radio" value="0" name="DealExpired" id="dealexpired2" checked="@((Model.DealExpired == 0) ? "checked" : null)" onclick="toggleDateInput('@Model.DealExpired')">
+                            <label class="form-check-label" for="dealexpired2">Đến ngày</label>
+                        </div>
+                    </div>
+                    <div id="expirationDateInput" style="display: none; margin-top: 10px;">
+                        <input asp-for="DealExpiredAt" class="form-control" type="datetime-local" id="dealexpiredat" style="width:200px;margin-right:10px;" />
+                        <span id="dealExpiredatError" class="text-danger"></span>
+                    </div>
+                    <span class="text-danger" id="dealExpiredatError"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Ký quỹ</label>
+                    <p>
+                        Quyền lợi khi tham gia ký quỹ <br />
+                        Không yêu cầu duyệt tài khoản cấp 2 <br />
+                        Xử lý và duyệt deal nhanh hơn <br />
+                        Hiển thị logo "Đảm bảo hoàn tiền" cho Deal để tăng lượt mua <br />
+                        Tự động hoàn tiền cho các lượt mua deal đã duyệt <br />
+                    </p>
+                </div>
+                <div class="form-group" style="display:flex">
+                    <input value="Hủy" class="btn btn-danger" style="width:60px;border-radius:10px" onclick="huy()" />
+                    <button value="Xác nhận"  class="btn btn-style" style="margin-left:10px;background-color:#2742A2;color:#fff; border-radius:10px;">Lưu thay đổi</button>
+                </div>
+            </div>
+            <input type="hidden" id="Nameimg" name="Nameimg" />
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="~/js/sellerDealsEdit.js"></script>
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "1500",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+        </script>
+        <script src="~/js/notidealcreate.js"></script>
+
+    }
+    }

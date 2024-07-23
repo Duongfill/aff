@@ -1,0 +1,22 @@
+﻿@page
+@model Affiliate_Shopee.Areas.Identity.Pages.Account.VerifyOtpModel
+@{
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Input.OtpCode" class="control-label"></label>
+                <input asp-for="Input.OtpCode" class="form-control" />
+                <span asp-validation-for="Input.OtpCode" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Xác nhận</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,99 @@
+﻿@model Affiliate_Shopee.Models.AspNetUser
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/bank_create.css" rel="stylesheet">
+<section class="awe-section-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center" style="background-color:#DEEBFF">
+                <img id="logosmo" src="/image/Asset 7.png" class="img-fluid" alt="Logo Image">
+                <h3>HỆ THỐNG GIAO DỊCH MUA HÀNG KHÔNG ĐAU VÍ</h3>
+            </div>
+            <div class="col-md-6" style="background-color:#fff;border-radius:0px 10px 10px 0px;">
+                <section >
+                    <div id="support">
+                        <label><i class="far fa-question-circle"></i> Câu hỏi thường gặp</label>
+                        <label> <i class="fas fa-phone"></i> Hotline: 0987654321</label>
+                    </div>
+                    <br />
+                    <form id="register-form" method="post" >
+                        <h6><i class="fas fa-backward"></i> Nhập SĐT để Đăng ký tài khoản</h6>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating">
+                            <label asp-for="PhoneNumber" class="form-label">Số điện thoại<sup style="color:red">*</sup></label>
+                            <div id="account_user">
+                                <i class="fas fa-mobile-alt"></i>
+                                <input asp-for="PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="Nhập số điện thoại" />
+                            </div>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"> </span>
+                        </div>
+                        <br/>
+                        <div class="form-floating">
+                            <label asp-for="PhoneNumber" class="form-label">Số điện thoại<sup style="color:red">*</sup></label>
+                            <div id="account_user">
+                                <i class="fas fa-mobile-alt"></i>
+                                <input asp-for="PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="Nhập số điện thoại" />
+                            </div>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"> </span>
+                        </div>
+                        <br />
+                        <div>
+                        </div>
+                        <div>
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Gửi mã OTP</button>
+                        </div>
+                        <br />
+
+                    </form>
+                </section>
+            
+            </div>
+        </div>
+    </div>
+</section>
+@* <div id="border">
+    <div class="row">
+        <div class="col-md-12" >
+            <image id="logosmo" src="/image/Asset 8.png" />
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating" >
+                    <label asp-for="Input.Email">NHẬP EMAIL<sup>*</sup></label>
+                    <div id="inputphone" >
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    </div>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <button id="sendotp">Gửi mã OTP</button>
+                <div class="form-floating" style="display: none;">
+                    <label asp-for="Input.ConfirmPassword">NHẬP MÃ OTP </label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"  />
+
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-floating" style="display: none;">
+                    <label asp-for="Input.Password">MẬT KHẨU <sup>*</sup></label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true"  />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div>
+                    <div class="checkbox" style="display: none;">
+                        <label  class="form-label">
+                            <input class="form-check-input" type="checkbox" />Đồng ý các điều khoản sử dụng
+                        </label>
+                    </div>
+                </div>
+
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary" style="display: none;">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+</div> *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

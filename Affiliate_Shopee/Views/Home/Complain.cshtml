@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Affiliate_Shopee.Models.Complain>
+
+@{
+    ViewData["Title"] = "Complain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="awe-section-3">
+    <div class="container" >
+        <h5 style="font-family:Lexend;font-weight:bold;font-size:40px;text-align:center">Danh sách khiếu nại</h5>
+        <table class="table" style="border:1px solid #333;">
+            <thead>
+                <tr style="background-color:#d5d5d5">
+                    <th>
+                        Tên deal
+                    </th>
+                    <th>
+                        Thời gian khiếu nại
+                    </th>
+                    <th>
+                        Nội dung 
+                    </th>
+                    <th>
+                        Trạng thái khiếu nại
+                    </th>
+                    <th>
+                        Trạng thái đơn hàng
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var complaint in Model)
+                {
+                    <tr>
+                        <td>@complaint.Order.Deal.Name</td>
+                        <td>@string.Format("{0:dd/MM/yyyy HH:mm:ss}", complaint.Createdat)</td>
+                        <td>@complaint.Descriptions</td>
+                        <td>@complaint.Status</td>
+                        <td>@complaint.Order.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+

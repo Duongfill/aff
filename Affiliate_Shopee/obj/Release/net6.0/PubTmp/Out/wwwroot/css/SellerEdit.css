@@ -1,0 +1,39 @@
+﻿/* Định dạng chung */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Định dạng các nút trạng thái */
+.status-button {
+    margin: 10px;
+}
+
+/* Định dạng phần nhập lý do */
+#feedbackReason {
+    margin-top: 20px;
+}
+
+    #feedbackReason textarea {
+        height: 100px; /* Định kích thước cho textarea */
+    }
+
+/* Định dạng nút Xác nhận */
+.btn-primary {
+    margin-top: 20px;
+}
+
+/* Định dạng các tiêu đề */
+.col-form-label {
+    font-weight: 700;
+}
+
+/* Định dạng hình ảnh review */
+.control-label {
+    font-weight: 700;
+}
+
+/* Định dạng liên kết "Back to List" */
+a {
+    display: block;
+    margin-top: 20px;
+}

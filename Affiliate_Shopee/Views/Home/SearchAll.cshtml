@@ -1,0 +1,65 @@
+﻿
+@model X.PagedList.IPagedList<Affiliate_Shopee.Models.Deal>
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "SearchAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/homeIndex.css" />
+<section class="awe-section-3">
+    <div class="container">
+        <div class="section_group_product section_group_product_1">
+            <div class="col-md-12">
+                @if (Model.TotalItemCount == 0)
+                {
+                    <h2 class="title-head text-center">Không tìm thấy kết quả phù hợp với từ khóa tìm kiếm của bạn.<br /> Vui lòng thử lại với từ khóa khác!</h2>
+                }
+                else
+                {
+                    <h1 class="title-head text-center">Kết quả tìm kiếm (@Model.TotalItemCount)</h1>
+
+                            <div class="row list-products">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-md-2 col-sm-4 col-xs-6 evo-item-product">
+                                        <div class="product-box">
+                                            <div class="product-thumbnail">
+
+                                                <a href="@Url.Action("Details", "Deals",new { id = item.Id })"
+                                                   title="@Html.DisplayFor(modelItem => item.Name)">
+                                                    <img src="/image/imagesellerdeals/@item.ImageDeal"
+                                                         alt="@item.Name"
+                                                         class="img-responsive center-block" />
+                                                </a>
+                                            </div>
+                                            <div class="product-info a-center">
+                                                <a class="product-name" href="@Url.Action("Details", "Deals",new { id = item.Id })"
+                                                   title="@Html.DisplayFor(modelItem => item.Name)">
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </a>
+                                                <div class="price-box clearfix">
+                                                    <div class="product-price" style="font-size:15px;color:#379AE6">Giá: @string.Format("{0:0,0}", item.ShopeePrice) đ</div>
+                                                    <div class="special-price product-price">Hoàn tiền: @string.Format("{0:0,0}", item.RefundPrice)đ</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="text-center">
+        <!-- Phân trang -->
+        @Html.PagedListPager(Model, page => Url.Action("SearchAll", new { page, query = ViewBag.Query }))
+    </div>
+    </div>
+</div>
+@section Scripts {
+
+    <script src="~/js/search.js"></script>
+}

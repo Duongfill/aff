@@ -1,0 +1,151 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/homeIndex.css" />
+<link rel="stylesheet" href="~/css/bank_create.css" />
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<section class="awe-section-3">
+    <div class="container">
+        <div id="border">
+            <div class="row">
+                <div class="col-md-6 text-center d-none d-md-block" style="background-color:#DEEBFF;height:100%;border-radius:10px 0px 0px 10px">
+                    <div id="navbarsmo">
+                        <img id="logosmo" src="/image/Asset 7.png" style="display: inline-block" alt="Logo" />
+                        <h3>HỆ THỐNG GIAO DỊCH MUA HÀNG KHÔNG ĐAU VÍ</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block" style="background-color:#fff;border-radius:0px 10px 10px 0px;height:100%">
+                    <section>
+                        <div id="support" class="d-flex justify-content-between">
+                            <label><i class="fa-regular fa-circle-question"></i> Câu hỏi thường gặp</label>
+                            <label><i class="fa-solid fa-phone"></i> Hotline: 0987654321</label>
+                        </div><h6 style="text-align:center;margin-top:10%">VUI LÒNG ĐIỀN THÔNG TIN ĐĂNG NHẬP</h6>
+                        <form id="account" method="post">
+                            <div class="form-floating mb-3">
+                                <label asp-for="Input.PhoneNumber" class="form-label">Tên đăng nhập<sup style="color:red">*</sup></label>
+                                <div id="account_user" class="position-relative" style="border-radius:10px">
+                                    <i class="fa-regular fa-user position-absolute"style="padding-left:5px"></i>
+                                    <input asp-for="Input.PhoneNumber" id="phoneNumberInput" class="form-control
+                                           @(string.IsNullOrEmpty(Model.ErrorMessage) ? "" : "border-danger")" type="number"
+                                           oninput="limitDigits(this)" autocomplete="username" pattern="0[0-9]{9}"
+                                           aria-required="true" placeholder="Điền số điện thoại" style="padding-left: 30px;border:none;" />
+                                </div>
+                                <span id="phonenumber" class="text-danger">@Model.ErrorMessage</span>
+                            </div>
+                            <br/>
+                            <div class="form-floating mb-3 password-container">
+                                <label asp-for="Input.Password" class="form-label">Mật khẩu <sup style="color:red">*</sup></label>
+                                <div id="password_user" class="position-relative" style="border-radius:10px">
+                                    <i class="fa-solid fa-lock position-absolute" style="padding-left:5px;"></i>
+                                    <input asp-for="Input.Password" type="password" class="form-control 
+                                            @(string.IsNullOrEmpty(Model.ErrorMessage1) ? "" : "border-danger")"
+                                           id="password" aria-required="true" style="padding-left:30px;border:none;min-height:35px" />
+                                    <i class="fas fa-eye toggle-password" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+                                </div>
+                                <span id="passwordError" class="text-danger">@Model.ErrorMessage1</span>
+                            </div>
+                           <br/>
+                            <div>
+                                <div class="checkbox">
+                                    <label asp-for="Input.RememberMe" class="form-label">
+                                        <input class="form-check-input" asp-for="Input.RememberMe" style="margin-bottom:0px !important;" />
+                                        <span class="checkbox-text">Lưu mật khẩu</span>
+                                    </label>
+                                    <a id="forgot-password" asp-page="./ForgotPassword">Quên mật khẩu?</a>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" style="border-radius:10px">Đăng nhập</button>
+                            </div>
+
+                            <div>
+                                <p>
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng ký tài khoản</a>
+                                </p>
+                            </div>
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger text-center"></div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* <div id="border">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <image id="logosmo" src="/image/Asset 7.png" style="display: inline-block;" />
+            <h3>HỆ THỐNG GIAO DICH MUA HÀNG KHÔNG SỢ ĐẮT</h3>
+        </div>
+        <div class="col-md-6" style="background-color:#fff;border-radius:0px 10px 10px 0px;height:592px">
+            <section>
+                <div id="support">
+                    <label><i class="fa-regular fa-circle-question"></i> Câu hỏi thường gặp</label>
+                    <label> <i class="fa-solid fa-phone"></i> Hotline: 0987654321</label>
+                </div>
+                <form id="account" method="post">
+                    <h6 style="text-align:center">VUI LÒNG ĐIỀN THÔNG TIN ĐĂNG NHẬP</h6>
+
+                    <div class="form-floating ">
+                        <label asp-for="Input.PhoneNumber" class="form-label">Tên đăng nhập<sup style="color:red">*</sup></label>
+                        <div id="account_user">
+                            <i class="fa-regular fa-user"></i>
+                            <input asp-for="Input.PhoneNumber" id="phoneNumberInput " class="form-control @(string.IsNullOrEmpty(Model.ErrorMessage) ? "" : "border-danger")" type="number"
+                            oninput="limitDigits(this)" autocomplete="username" pattern="0[0-9]{9}" aria-required="true" placeholder="Điền số điện thoại" />
+                        </div>
+                        <span id="phonenumber" class="text-danger">@Model.ErrorMessage</span>
+                    </div>
+                    <br />
+                    <div class="form-floating password-container">
+                        <label asp-for="Input.Password" class="form-label">Mật khẩu <sup style="color:red">*</sup></label>
+                        <div id="password_user">
+                            <i class="fa-solid fa-lock" style="color:gray"></i>
+                            <input asp-for="Input.Password" type="password" class="form-control @(string.IsNullOrEmpty(Model.ErrorMessage1) ? "" : "border-danger")" id="password" aria-required="true" />
+                            <i class="fas fa-eye toggle-password" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+                        </div>
+
+                        <span id="passwordError" class="text-danger">@Model.ErrorMessage1</span>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe" class="form-label">
+                                <input class="form-check-input" asp-for="Input.RememberMe" style="margin-bottom:0px !important" />
+                                <span class="checkbox-text">Lưu mật khẩu</span>
+                            </label>
+                            <a id="forgot-password" asp-page="./ForgotPassword">Quên mật khẩu?</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Đăng nhập</button>
+                    </div>
+                    <br />
+                    <div>
+                        <p>
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng ký tài khoản</a>
+                        </p>
+                        <p>
+
+                        </p>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger" style="text-align:center"></div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+ *@
+
+@section Scripts {
+    <script src="~/js/login.js"></script>
+
+}

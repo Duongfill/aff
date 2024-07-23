@@ -1,0 +1,470 @@
+﻿@model Affiliate_Shopee.Models.Deal
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var similarDeals = ViewBag.SimilarDeals as List<Deal>;
+}
+<link rel="stylesheet" href="~/css/details.css" />
+@if (TempData["Message"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            toastr.info('@TempData["Message"]');
+        });
+    </script>
+}
+<section class="awe-section-3">
+    <div class="container">
+        <div id="box-wrapper" style="background-color: white">
+            <div class="container">
+                <div class="row">
+                    <div class="details-product clearfix" style="padding-top:20px">
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-5">
+                                    <div id="product" class="relative product-image-block ">
+                                        <div class="large-image">
+                                            <a href="">
+                                                <img id="zoom_01"
+                                                     src="~/image/imagesellerdeals/@Model.ImageDeal"
+                                                     alt="image not found"
+                                                     class="img-responsive center-block">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12  col-md-7 ">
+                                    <h1 class="title-head" style="font-family:Lexend">@Html.DisplayFor(model => model.Name)</h1>
+                                    <br />
+                                    <div class="price-box">
+                                        <div class="inventory_quantity hidden">
+                                            <span class="stock-brand-title">Tình trạng:</span>
+                                            <span class="a-stock a2">Còn hàng</span>
+                                        </div>
+                                        <span class="special-price" style="">
+                                            <span class="price" style="color:#379AE6">Giá bán: @string.Format("{0:0,0}", Model.ShopeePrice) đ</span> -
+                                            <span class="price" style="color:red">Hoàn tiền: @string.Format("{0:0,0}", Model.RefundPrice) đ</span>
+                                        </span>
+                                        <h5>Mua sản phẩm trên Shopee, đánh giá và nhận hoàn tiền từ người bán</h5>
+                                    </div>
+                                    <i>📢 CÁC BƯỚC MUA DEAL</i>
+                                    <br />
+                                    <br />
+                                    <div class="form-product">
+                                        @if (ViewBag.Status == "Từ chối đánh giá" || ViewBag.Status == "Chờ duyệt" || ViewBag.Status == "Đợi mua hàng" || ViewBag.Status == "Chờ Review" || ViewBag.Status == "Đã hoàn tiền" || ViewBag.Status == "Khiếu nại" || ViewBag.Status == "Chờ hoàn tiền")
+                                        {
+                                            <form asp-action="CreateOrder" id="createOrderForm">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group" style="display:none">
+                                                    <input asp-for="Id" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input1" id="labelinput1">
+                                                        <input asp-for="RefundPrice" class="form-control" style="display:none" />
+                                                        <i class="fa-regular fa-circle-check" style="color:green;width:20px;" id="label1"></i>
+                                                        B1. Đăng ký mua deal
+                                                    </label>
+                                                    <input id="input1" type="submit" value="Đã đăng ký mua deal" class="btn btn-primary" style="background-color: #2742A2;color: white;border-radius:5px" disabled />
+                                                </div>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="CreateOrder" id="createOrderForm">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group" style="display:none">
+                                                    <input asp-for="Id" class="form-control" asp-items="ViewBag.DealId" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input1" id="labelinput1">
+                                                        <i class="fa-regular fa-circle-check" style="color:green;width:20px;display:none" id="label1"></i>
+                                                        B1. Đăng ký mua deal
+                                                    </label>
+                                                    <input id="input1" type="submit" value="Đăng ký mua deal" class="btn btn-primary" style="background-color: #2742A2;color: white;border-radius:5px" />
+                                                </div>
+                                            </form>
+                                        }
+                                        @if (ViewBag.Status == "Đợi mua hàng")
+                                        {
+                                            <form asp-action="CreateImageB2" id="createImageForm" method="post" enctype="multipart/form-data">
+                                                <div class="form-group" style="display:none">
+                                                    <label asp-for="Id" class="control-label"></label>
+                                                    <input asp-for="Id" class="form-control" asp-items="ViewBag.DealId" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="input2">
+                                                            B2. Cập nhật ảnh đơn hàng
+                                                        </label>
+                                                        <label for="inputfile2" id="uploadLabel" style="width:150px;overflow:hidden;height:150px;border:1px solid gray;color:gray;display:flex;flex-direction:column;align-items:center">
+                                                            <span style="padding-top:15px"><i class="fa-solid fa-plus"></i></span>
+                                                            <span>Tải ảnh lên</span>
+                                                        </label>
+                                                        <input type="file" style="display:none" id="inputfile2" name="inputfile2" onchange="getFileName(event)" accept="image/*" />
+                                                        <div>
+                                                            <input id="noti2" type="submit" style="display:none;background-color: #2742A2;color: white;border-radius:5px;border:none;" value="Xác nhận" onclick="showNoti2()">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" id="LinkName" name="LinkName" />
+                                            </form>
+                                        }
+                                        else if (ViewBag.Status == "Chờ Review" || ViewBag.Status == "Chờ duyệt" || ViewBag.Status == "Khiếu nại" || ViewBag.Status == "Từ chối đánh giá" || ViewBag.Status == "Đã hoàn tiền" || ViewBag.Status == "Chờ hoàn tiền")
+                                        {
+                                            <form asp-action="CreateImageB2">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="input2">
+                                                            <i class="fa-regular fa-circle-check" style="color:green;width:20px;"></i>
+                                                            B2. Cập nhật ảnh đơn hàng
+                                                        </label>
+                                                        <input id="input2" type="button" value="Đã cập nhật ảnh và đánh giá sản phẩm" class="btn btn-primary" style="background-color: #2742A2;color: white;border-radius:5px" onclick="showElements()" disabled />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="CreateImageB2">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="input2">
+
+                                                            B2. Cập nhật ảnh đơn hàng
+                                                        </label>
+                                                        <input id="input2" type="button" value="Cập nhật ảnh và đánh giá sản phẩm" class="btn btn-primary" style="background-color: #2742A2;color: white;border-radius:5px" onclick="showElements()" disabled />
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        }
+
+                                        @if (ViewBag.Status == "Chờ Review")
+                                        {
+                                            <form asp-action="CreateImageB3" id="createImageForm" method="post" enctype="multipart/form-data">
+                                                <div class="form-group" style="display:none">
+                                                    <label asp-for="Id" class="control-label"></label>
+                                                    <input asp-for="Id" class="form-control" asp-items="ViewBag.DealId" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input3">
+                                                        B3. Cập nhật ảnh và đánh giá sản phẩm
+                                                    </label>
+                                                    <label for="inputfile2" id="uploadLabel" style="width:150px;overflow:hidden;height:150px;border:1px solid gray;color:gray;display:flex;flex-direction:column;align-items:center">
+                                                        <span style="padding-top:15px"><i class="fa-solid fa-plus"></i></span>
+                                                        <span>Tải ảnh lên</span>
+                                                    </label>
+                                                    <input type="file" style="display:none" id="inputfile2" name="inputfile2" onchange="getFileName2(event)" accept="image/*" />
+
+                                                    <div id="payment" style="display:none">
+                                                        <label style="display:flex;">
+                                                            <input type="radio" name="option" value="a" id="bank" onclick="checkRadioAndFile()">
+                                                            <i style="padding:7px"> Chuyển tiền qua tài khoản ngân hàng</i>
+                                                        </label>
+                                                        <label style="display:flex">
+                                                            <input type="radio" name="option" value="b" id="momo" onclick="checkRadioAndFile()"><i style="padding:7px"> Chuyển tiền qua tài khoản MOMO</i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <input id="refund" type="submit" style="display:none;background-color: #2742A2;color: white;border-radius:5px;border:none" value="Xác nhận" onclick="showRefund()">
+                                                <input type="hidden" id="LinkName" name="LinkName" />
+                                            </form>
+                                        }
+                                        else if (ViewBag.Status == "Chờ duyệt" || ViewBag.Status == "Đã hoàn tiền" || ViewBag.Status == "Khiếu nại" || ViewBag.Status == "Từ chối đánh giá" || ViewBag.Status == "Chờ hoàn tiền")
+                                        {
+                                            <form asp-action="CreateImageB3" method="post" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label for="input3">
+                                                        <i class="fa-regular fa-circle-check" style="color:green;width:20px" id="label3"></i>
+                                                        B3. Cập nhật ảnh và đánh giá sản phẩm
+                                                    </label>
+                                                    <input id="input3" type="button" value="Đã cập nhật ảnh và đánh giá sản phẩm" class="btn btn-primary" style="background-color: #2742A2;color: white;border-radius:5px" onclick="showElements()" disabled />
+                                                </div>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="CreateImageB3" method="post" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label for="input3">
+
+                                                        B3. Cập nhật ảnh và đánh giá sản phẩm
+                                                    </label>
+                                                    <input id="input3" type="button" value="Cập nhật ảnh và đánh giá sản phẩm" class="btn btn-primary" style="background-color: #2742A2;color: white;border-radius:5px" onclick="showElements()" disabled />
+
+
+                                                </div>
+
+                                            </form>
+                                        }
+                                        <form>
+                                            <div class="form-group">
+                                                <label>B4. Chờ duyệt ảnh và hoàn tiền</label>
+                                            </div>
+
+                                        </form>
+                                        @if (ViewBag.Status == "Chờ duyệt")
+                                        {
+                                            <h6 id="notification" style="background-color: rgba(39, 174, 96, 0.39);border-radius:10px;padding:10px;margin-right:30px">
+                                                ⏳ Đang chờ người bán duyệt ảnh.
+                                                <br />
+                                                💡 Trong trường hợp lượt mua của bạn bị người bán từ chối hoàn tiền thì thời gian tối đa để bạn cập nhật lại ảnh đánh giá đơn hàng là 7 ngày. Sau ngày quy định hệ thống sẽ tự động khoá lượt mua deal.
+                                            </h6>
+                                        }
+                                    </div>
+                                    <div class="product-sidebar-ant-fashion">
+                                        @if (ViewBag.Status == "Đã hoàn tiền")
+                                        {
+                                            <h6 id="notification" style="background-color: rgba(39, 174, 96, 0.39);border-radius:10px;padding:10px;margin-right:30px;width:500px">
+                                                ⏳ Đã thanh toán.
+                                            </h6>
+                                            <form asp-action="Feedback" method="post">
+                                                <input asp-for="Id" class="form-control" asp-items="ViewBag.DealId" type="hidden" />
+                                                <input id="dealId" type="hidden" value="@Model.Id" />
+                                                <a id="complainButton" style="color:red;cursor:pointer"><i class="fa-regular fa-envelope"></i> Gửi thông tin khiếu nại</a>
+                                                @*  <input id="complainButton" type="button" value="Gửi thông tin khiếu nại" style="border-radius:10px;border:none;height:50px;background-color:red;color:white;font-weight:600;margin-right:5px" /> *@
+                                                <div id="complainForm" style="display:none;">
+                                                    <textarea id="text" name="text" class="form-control" rows="5" style="border-radius:10px;margin:10px 0px 10px 0px;width:500px" oninput="checkInput()"> </textarea>
+                                                    <button type="submit" id="submitComplain" class="btn btn-primary mt-2" style="border-radius:10px;background-color:green;display:none">Xác nhận</button>
+                                                    <p style="color:red; font-style: italic">Cảnh báo: Bạn phải chịu hoàn toàn trách nhiệm về khiếu nại này!</p>
+                                                </div>
+                                            </form>
+                                            <form asp-action="Confirm" method="post">
+                                                <input asp-for="Id" class="form-control" asp-items="ViewBag.DealId" type="hidden" />
+                                                <input id="dealId" type="hidden" value="@Model.Id" />
+                                                <input id="complainButton1" type="submit" value="Đã nhận"
+                                                       style="border-radius:10px;border:none;width:100px;height:50px;background-color:#2742A2;color:white;font-weight:600" />
+                                            </form>
+                                        }
+                                        else if (ViewBag.Status == "Chờ hoàn tiền")
+                                        {
+                                            <h6 id="notification" style="background-color: rgba(39, 174, 96, 0.39);border-radius:10px;padding:10px;margin-right:30px;width:500px">
+                                                ⏳ Chờ hoàn tiền.
+                                            </h6>
+
+                                        }
+                                        else if (ViewBag.Status == "Từ chối đánh giá")
+                                        {
+                                            <h6>Lý do từ chối:  @ViewBag.SellerFeedback</h6>
+                                            <form asp-action="Feedback" method="post">
+                                                <input asp-for="Id" class="form-control" asp-items="ViewBag.DealId" type="hidden" />
+                                                <input id="dealId" type="hidden" value="@Model.Id" />
+                                                <a id="complainButton" style="color:red;cursor:pointer"><i class="fa-regular fa-envelope"></i> Gửi thông tin khiếu nại</a>
+                                                @*  <input id="complainButton" type="button" value="Gửi thông tin khiếu nại" style="border-radius:10px;border:none;height:50px;background-color:red;color:white;font-weight:600;margin-right:5px" /> *@
+                                                <div id="complainForm" style="display:none;">
+                                                    <textarea id="text" name="text" class="form-control" rows="5" style="border-radius:10px;margin:10px 0px 10px 0px;width:500px" oninput="checkInput()"> </textarea>
+                                                    <button type="submit" id="submitComplain" class="btn btn-primary mt-2" style="border-radius:10px;background-color:green;display:none">Xác nhận</button>
+                                                    <p style="color:red; font-style: italic">Cảnh báo: Bạn phải chịu hoàn toàn trách nhiệm về khiếu nại này!</p>
+                                                </div>
+                                            </form>
+                                        }
+                                        else if (ViewBag.Status == "Khiếu nại")
+                                        {
+                                            <h6 id="notification" style="background-color: rgba(39, 174, 96, 0.39);border-radius:10px;padding:10px;margin-right:30px">
+                                                ⏳ Đã thanh toán.
+                                                <br />
+                                            </h6>
+                                            <form asp-action="Confirm" method="post">
+                                                <input asp-for="Id" class="form-control" asp-items="ViewBag.DealId" type="hidden" />
+                                                <input id="dealId" type="hidden" value="@Model.Id" />
+                                                <input id="complainButton1" type="submit" value="Đã nhận" style="border-radius:10px;border:none;width:100px;height:50px;background-color:#2742A2;color:white;font-weight:600" />
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-page-relative">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="related-product collections-container">
+                            <div class="feature_category_title text-center">
+                                <h2 class="title-head text-center">Deal tương tự</h2>
+                            </div>
+                            <div class="row" style="padding:10px">
+                                @foreach (var similarDeal in similarDeals)
+                                {
+                                    <div class="col-md-2 col-sm-4 col-xs-6">
+                                        <div class="product-box">
+                                            <div class="product-thumbnail">
+                                                <a href="@Url.Action("Details", "Deals",new { id = similarDeal.Id })" title="@similarDeal.Name">
+                                                    <img src="/image/imagesellerdeals/@similarDeal.ImageDeal" alt="@similarDeal.Name" class="img-responsive center-block" />
+                                                </a>
+                                            </div>
+                                            <div class="product-info a-center">
+                                                <a class="product-name" href="@similarDeal.Id" title="@similarDeal.Name">@similarDeal.Name</a>
+                                                <div class="price-box clearfix">
+                                                    <div class="product-price" style="font-size:15px;color:#379AE6">Giá: @string.Format("{0:0,0}", similarDeal.ShopeePrice) đ</div>
+                                                    <div class="special-price product-price">Hoàn tiền: @string.Format("{0:0,0}", similarDeal.RefundPrice)đ</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+@* <script>
+    document.getElementById("modalOKButton").addEventListener("click", function () {
+        var input2 = document.getElementById("input2");
+        input2.disabled = false
+    });
+    document.getElementById("okButton1").addEventListener("click", function () {
+        var input3 = document.getElementById("input3");
+        input3.disabled = false
+    });
+    function showIcon(iconId) {
+        var icon = document.getElementById(iconId);
+        icon.style.display = "inline-block";
+    }
+    function choosefile1() {
+        var inputfile2 = document.getElementById("inputfile2");
+        var noti2 = document.getElementById("noti2");
+        if (inputfile2.files.length > 0) {
+            noti2.style.display = "block";
+        } else {
+            noti2.style.display = 'none';
+        }
+    }
+
+    function choosefile2() {
+        var inputfile3 = document.getElementById("inputfile3");
+        var refund = document.getElementById("refund");
+        var radioChecked = document.querySelector('input[name="option"]:checked');
+        if (inputfile3.files.length > 0 && radioChecked) {
+            refund.style.display = "block";
+        } else {
+            refund.style.display = 'none';
+        }
+    }
+
+    function checkRadioAndFile() {
+        choosefile2();
+    }
+    function showInputFile(inputId, labelId) {
+        var input = document.getElementById(inputId);
+        var label = document.getElementById(labelId);
+        var noti2 = document.getElementById("noti2")
+        input.style.display = "inline-block";
+        label.style.display = "none";
+        input.click();
+        noti2.style.display = "block";
+        noti2.style.visibility = "visible";
+    }
+
+    function showLabel(labelId) {
+        var label = document.getElementById(labelId);
+        label.style.display = "inline-block"; // Hiển thị thẻ <i>
+    }
+    function showElements() {
+        var inputfile = document.getElementById("inputfile3");
+        var payment = document.getElementById("payment");
+
+        payment.style.display = "inline-block";
+        inputfile.style.display = "inline-block";
+
+    }
+    function showRefund() {
+        var refund = document.getElementById("refund");
+
+        var mynoti3 = document.getElementById("mynoti3");
+        mynoti3.style.display = "block";
+
+    }
+    function getFileName(event) {
+        var fileName = event.target.files[0].name;
+        document.getElementById("LinkName").value = fileName;
+    }
+    function showNoti2() {
+        var mynoti2b = document.getElementById("mynoti2b");
+        var mynoti2 = document.getElementById("mynoti2");
+        var inputfile2 = document.getElementById("inputfile2");
+
+        if (inputfile2.files.length > 0) {
+            mynoti2.style.display = "block";
+        } else {
+            mynoti2b.style.display = 'block';
+        }
+
+    }
+    function showNoti2a() {
+        var inputfile2 = document.getElementById("inputfile2");
+        var mynoti2b = document.getElementById("mynoti2b");
+        var mynoti2a = document.getElementById("mynoti2a");
+        if (inputfile2.files.length > 0) {
+            mynoti2a.style.display = "block";
+        } else {
+            mynoti2b.style.display = 'block';
+        }
+    }
+    function OK() {
+        var label2 = document.getElementById("label2");
+        label2.style.display = "inline-block";
+        var mynoti2 = document.getElementById("mynoti2");
+        mynoti2.style.display = "none";
+        var mynoti2a = document.getElementById("mynoti2a");
+        mynoti2a.style.display = "none";
+        var noti2 = document.getElementById("noti2");
+        noti2.style.display = "none";
+        noti2.style.visibility = "visible";
+        var noti2a = document.getElementById("noti2a");
+        noti2a.style.display = "inline-block";
+        var inputFile = document.getElementById('inputfile2');
+    }
+    function OK_noimg() {
+        var noti2b = document.getElementById("mynoti2b");
+        noti2b.style.display = "none";
+    }
+    function OK_Refund() {
+        var mynoti3 = document.getElementById("mynoti3");
+        mynoti3.style.display = "none";
+        var input1 = document.getElementById("input1");
+        var input2 = document.getElementById("input2");
+        var inputfile2 = document.getElementById("inputfile2");
+        var input3 = document.getElementById("input3");
+        var inputfile3 = document.getElementById("inputfile3");
+        var payment = document.getElementById("payment");
+        var noti2a = document.getElementById("noti2a");
+        var refund = document.getElementById("refund");
+        var label3 = document.getElementById("label3");
+        label3.style.display = "inline-block";
+        input1.disabled = true;
+        input1.style.backgroundColor = "gray";
+        input2.disabled = true;
+        input2.style.backgroundColor = "gray";
+        inputfile2.style.display = "none";
+        input3.disabled = true;
+        input3.style.backgroundColor = "gray";
+        inputfile3.style.display = "none";
+        payment.style.display = "none";
+        noti2a.style.display = "none";
+        refund.style.display = "none";
+        var notification = document.getElementById("notification");
+        notification.style.display = "inline-block";
+    }
+    function Cancel() {
+        var mynoti2 = document.getElementById("mynoti2");
+        mynoti2.style.display = "none";
+        noti2.style.visibility = "visible";
+        var mynoti2a = document.getElementById("mynoti2a");
+        mynoti2a.style.display = "none";
+        var mynoti3 = document.getElementById("mynoti3");
+        mynoti3.style.display = "none";
+    }
+
+</script> *@
+@section Scripts {
+    <script src="~/js/details.js"></script>
+}

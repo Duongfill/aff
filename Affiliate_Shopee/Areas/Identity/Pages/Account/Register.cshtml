@@ -1,0 +1,131 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<link href="~/css/bank_create.css" rel="stylesheet">
+<link rel="stylesheet" href="~/css/homeIndex.css" />
+<section class="awe-section-3">
+    <div class="container">
+        <div id="border">
+            <div class="row">
+                <div class="col-md-6 text-center d-none d-md-block" style="background-color:#DEEBFF;height:100%;border-radius:10px 0px 0px 10px">
+                    <div id="navbarsmo" style="margin-bottom:60%;margin-top:20%">
+                        <img id="logosmo" src="/image/Asset 7.png" style="display: inline-block" alt="Logo" />
+                        <h3>HỆ THỐNG GIAO DỊCH MUA HÀNG KHÔNG ĐAU VÍ</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block" style="background-color:#fff;border-radius:0px 10px 10px 0px">
+                    <section>
+                        <div id="support">
+                            <label><i class="fa-regular fa-circle-question"></i> Câu hỏi thường gặp</label>
+                            <label> <i class="fa-solid fa-phone"></i> Hotline: 0987654321</label>
+                        </div>
+                        <h6 style="text-align:center;margin-top:10%">VUI LÒNG ĐIỀN THÔNG TIN ĐĂNG KÝ</h6>
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Input.UserName">Tên người dùng: <sup style="color:red">*</sup></label>
+                                <input asp-for="Input.UserName" class="form-control"/>
+                                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Email" class="control-label">Email: <sup style="color:red">*</sup></label>
+                                <input asp-for="Input.Email" class="form-control" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.PhoneNumber">Số điện thoại: <sup style="color:red">*</sup></label>
+                                <div class="form-row">
+                                    <div class="col" style="display:flex;justify-content:space-between">
+                                        <input asp-for="Input.PhoneNumber" class="form-control" style="width:75%"/>
+                                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> 
+                                        <button type="button" id="sendOtpButton" class="btn btn-secondary" style="border-radius:10px">Gửi OTP</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Password" class="control-label">Mật khẩu: <sup style="color:red">*</sup></label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.ConfirmPassword" class="control-label">Nhập lại mật khẩu: <sup style="color:red">*</sup></label>
+                                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.NameBank">Tên ngân hàng: <sup style="color:red">*</sup></label>
+                                <select asp-for="Input.NameBank" class="form-control">
+                                    <option value="">-- Chọn ngân hàng --</option>
+                                    <option value="MB BANK">Ngân hàng quân đội - MB BANK</option>
+                                    <option value="Bank2">Ngân hàng</option>
+                                    <option value="Bank3">Bank 3</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                                <span asp-validation-for="Input.NameBank" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.IdBank">Số tài khoản: <sup style="color:red">*</sup></label>
+                                <input asp-for="Input.IdBank" class="form-control" />
+                                <span asp-validation-for="Input.IdBank" class="text-danger"></span>
+                            </div>
+                            <input type="hidden" id="fmcToken" asp-for="Input.FmcToken" name="Input.FmcToken" />
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                        <p>
+                            Bạn đã có tài khoản? <a asp-page="/Account/Login" asp-area="Identity">Log in</a>.
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_ptS6PGbCuxhxltElosTXXaVsRNVZXHQ",
+            authDomain: "affilateshopee-67713.firebaseapp.com",
+            projectId: "affilateshopee-67713",
+            storageBucket: "affilateshopee-67713.appspot.com",
+            messagingSenderId: "890987991102",
+            appId: "1:890987991102:web:7a9ca42a52c41c5b60c16f",
+            measurementId: "G-15FY1V988K"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const messaging = firebase.messaging();
+
+            messaging.requestPermission().then(() => {
+                console.log('Notification permission granted.');
+
+                return messaging.getToken();
+            }).then((token) => {
+                if (token) {
+                    console.log('FCM Token:', token);
+                    document.getElementById('fmcToken').value = token;
+                } else {
+                    console.log('No registration token available. Request permission to generate one.');
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+            });
+
+            messaging.onMessage((payload) => {
+                console.log('Message received. ', payload);
+                // Customize notification here
+            });
+        });
+    </script>
+   
+}

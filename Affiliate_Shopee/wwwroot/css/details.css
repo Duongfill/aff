@@ -1,0 +1,137 @@
+﻿.body {
+    background-color: aliceblue;
+}
+
+.timeline {
+    list-style-type: none;
+    padding: 0;
+    position: relative;
+}
+
+.timeline-item {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.timeline-heading {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.timeline-item button {
+    width: 50%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.timeline-item span {
+    font-size: small;
+}
+
+.timeline-item:nth-child(even) {
+    text-align: right;
+}
+
+    .timeline-item:nth-child(even) button {
+        text-align: center;
+    }
+
+.timeline-item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: #ccc;
+}
+
+.timeline-item:nth-child(even):before {
+    left: auto;
+    right: 50%;
+}
+
+@media (max-width: 768px) {
+    .timeline-item:before {
+        left: 15px;
+    }
+}
+/* Style cho modal */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #fefefe;
+    border:none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+    .custom-modal .modal-dialog {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    .custom-modal .modal-content {
+        background-color: #fefefe;
+        border: 1px solid #888;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .custom-modal .modal-headers {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .custom-modal .modal-body {
+        margin-bottom: 20px;
+    }
+
+    .custom-modal .modal-footer {
+        text-align: center;
+    }
+    #mynoti{
+        border:none
+    }
+#mynoti2 {
+    border: none
+}
+.modal-body{
+    text-align:center
+}
+#modalOKButton {
+    background-color: #2742A2;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.selected-image-container {
+    width: 100%; /* Đảm bảo ô ảnh có kích thước bằng với ô chứa */
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+    .selected-image-container img {
+        max-width: 100%; /* Ảnh sẽ không vượt quá kích thước của ô chứa */
+        max-height: 100%;
+    }
+.custom-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}

@@ -1,0 +1,14 @@
+﻿
+
+#NameShop {
+    border-radius:10px
+}
+#Email {
+    border-radius: 10px
+}
+#Linkfb {
+    border-radius: 10px
+}
+.input-error {
+    border-color: red;
+}

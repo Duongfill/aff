@@ -1,0 +1,29 @@
+﻿body {
+}
+.control-label {
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+    font-family:'Times New Roman', Times, serif
+}
+/* Ẩn các các control spinner trên input number */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+.notification {
+    display: none; /* Ẩn thông báo ban đầu */
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00cc66;
+    color: white;
+    padding: 10px 20px;
+    z-index: 9999;
+}

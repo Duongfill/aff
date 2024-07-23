@@ -1,0 +1,68 @@
+﻿@model Affiliate_Shopee.Models.Seller
+
+@{
+    ViewData["Title"] = "Đăng ký bán hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/homeIndex.css" />
+<link rel="stylesheet" href="~/css/aspnetusers_create.css" />
+<section class="awe-section-3">
+    <div class="container" style="background-color:#fff;">
+        <h3 class="title-head text-center" style="font-size:15px">ĐỂ BẮT ĐẦU ĐĂNG KÝ DEAL VUI LÒNG ĐĂNG KÝ TÀI KHOẢN NGƯỜI BÁN TẠI FORM SAU</h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-login">
+                    <div id="login">
+                        <form asp-action="Create" method="post" id="customer_register" accept-charset="UTF-8" enctype="multipart/form-data">
+                            <input name="FormType" type="hidden" value="customer_register" /><input name="utf8" type="hidden" value="true" />
+                           
+                            <div class="form-signup clearfix">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label asp-for="NameShop" class="control-label" style="font-size:15px">Tên shop: <sup style="color:red;font-size:10px">*</sup></label>
+                                                <input asp-for="NameShop" class="form-control" placeholder="Nhập tên shop" id="NameShop" />
+                                                <span id="nameShopError" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label asp-for="Linkfb" class="control-label" style="font-size:15px">Link facebook: <sup style="color:red;font-size:10px">*</sup></label>
+                                                <input asp-for="Linkfb" class="form-control" placeholder="Nhập link Facebook" id="Linkfb" />
+                                                <span id="linkFbError" class="text-danger"></span>
+                                                <a href="#" style="color:#2A2A86;font-style:italic" id="instructionLink">Hướng dẫn lấy link trên App Facebook</a>
+                                            </div>
+                                            <div id="instructionImage" style="display:none;">
+                                                <img src="~/image/huongdanlayanh.png" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label asp-for="Img" class="control-label" style="font-size:15px">Hình ảnh Avatar Facebook: <sup style="color:red;font-size:10px">*</sup></label>
+                                                <label for="ImgFB" id="uploadLabel" style="width:100px;height:100px;overflow: hidden;border:1px solid gray;color:gray;display:flex;flex-direction:column;align-items:center;">
+                                                    <span style="padding-top:15px"><i class="fa-solid fa-plus"></i></span>
+                                                    <span>Tải ảnh lên</span>
+                                                </label>
+                                                <input asp-for="Img" class="form-control" style="display:none" name="ImgFB" type="file" id="ImgFB" onchange="getFileName(event)" accept="image/*" />
+                                                <span id="imgError" class="text-danger"></span>
+                                            </div>
+                                            <p style="color:red">* Lưu ý: Ảnh xác thực gồm Mặt chủ shop tay cầm điện thoại hoặc máy tính có màn hình FB chính chủ, bạn chụp rõ mặt và rõ chữ trên màn hình điện thoại giống hình mẫu.</p>
+                                        </div>
+                                        <div class="col-xs-12 text-center" style="margin-top:15px; padding: 0">
+                                            <button value="Đăng ký" class="btn btn-style" style="background-color:#2742A2;color:#fff; border-radius:10px">Đăng ký</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="Nameimg" name="Nameimg" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @{
+        <script src="~/js/createSeller.js"></script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

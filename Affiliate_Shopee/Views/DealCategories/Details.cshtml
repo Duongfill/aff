@@ -1,0 +1,132 @@
+﻿@model X.PagedList.IPagedList<Affiliate_Shopee.Models.Deal>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ShopeeAffContext db = new ShopeeAffContext();
+    var dealcategories = db.DealCategories.ToPagedList(); // Phân trang cho dealcategories
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/css/homeIndex.css" />
+<link rel="stylesheet" href="~/css/slideCategory.css" />
+<script src="../bizweb.dktcdn.net/100/270/860/themes/606449/assets/appear24cb.js?1705895589400" type="text/javascript"></script>
+
+<section class="awe-section-3">
+    <div class="container dg-fix">
+        <div class="section_group_product section_group_product_1 search-group-new">
+            <div class="header_search">
+                <div class="input-group">
+                    <fieldset class="form-group">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="clearfix" id="dealCategoriesContainer">
+                                @foreach (var item in dealcategories)
+                                {
+                                    <div class="col-md-2 col-sm-6 col-xs-12 deal-item" style="text-align: center;">
+                                        <a href="@Url.Action("Details", "DealCategories", new { id = item.Id })">
+                                            <img style="width: 70px;" src="~/image/@item.Image" alt="">
+                                        </a>
+                                        <h6><a href="@Url.Action("Details", "DealCategories", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a></h6>
+                                    </div>
+                                }
+                                @for (int i = dealcategories.Count(); i < 6; i++)
+                                {
+                                    <div class="col-md-2 col-sm-6 col-xs-12 deal-item" style="text-align: center;">
+                                        <a href="#">
+                                            <img style="width: 70px;" src="~/image/ddđ.png" alt="">
+                                        </a>
+                                        <h6><a href="#"></a></h6>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="dg-pagination">
+                <button class="btn dg-fixbutton" id="prevSlide" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="btn dg-fixbutton" id="nextSlide"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="awe-section-4">
+    <div class="container">
+        <div class="section_group_product section_group_product_1">
+            <div class="barbox clearfix">
+                <h2 class="titlecate">@ViewBag.DealCategoryName</h2>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row list-product">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-2 col-sm-4 col-xs-6 evo-item-product">
+                        <div class="product-box">
+                            <div class="product-thumbnail">
+                                <div class="sale-flash">SALE</div>
+                                <a href="@Url.Action("Details", "Deals", new { id = item.Id })"
+                                   title="@Html.DisplayFor(modelItem => item.Name)">
+                                    <img src="/image/imagesellerdeals/@item.ImageDeal"
+                                         alt="@item.Name"
+                                         class="img-responsive center-block" />
+                                </a>
+                            </div>
+                            <div class="product-info a-center">
+                                <a class="product-name" href="@Url.Action("Details", "Deals", new { id = item.Id })"
+                                   title="@Html.DisplayFor(modelItem => item.Name)">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </a>
+                                <div class="price-box clearfix">
+                                    <div class="product-price" style="font-size:15px;color:#379AE6">Giá: @string.Format("{0:0,0}", item.ShopeePrice) đ</div>
+                                    <div class="special-price product-price">Hoàn tiền: @string.Format("{0:0,0}", item.RefundPrice)đ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="container">
+                <div class="text-center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            @if (Model.HasPreviousPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Details", new { page = Model.PageNumber - 1, id = ViewBag.Id })" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            }
+
+                            @for (var i = 1; i <= Model.PageCount; i++)
+                            {
+                                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Details", new { page = i, id = ViewBag.Id })">@i</a>
+                                </li>
+                            }
+
+                            @if (Model.HasNextPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Details", new { page = Model.PageNumber + 1, id = ViewBag.Id })" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+    {
+    <script src="~/js/slideCategories.js"></script>
+}

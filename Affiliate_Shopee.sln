@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Affiliate_Shopee", "Affiliate_Shopee\Affiliate_Shopee.csproj", "{D5151789-9A26-4C90-B2A6-46A760A96798}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5151789-9A26-4C90-B2A6-46A760A96798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5151789-9A26-4C90-B2A6-46A760A96798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5151789-9A26-4C90-B2A6-46A760A96798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5151789-9A26-4C90-B2A6-46A760A96798}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6C7C0B8-7DEB-438B-BBC0-6AB1E4F92BDD}
+	EndGlobalSection
+EndGlobal

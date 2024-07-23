@@ -1,0 +1,147 @@
+﻿@model Affiliate_Shopee.Models.Order
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Seller/Views/Shared/_Layout_Seller.cshtml";
+}
+<link rel="stylesheet" href="~/css/SellerEdit.css" />
+
+<div class="container-fluid">
+    <div class="row mt-3 mb-4">
+        <div class="col-md-6">
+            <h4 style="font-weight:700;color:#333;">Thông tin chi tiết</h4>
+            <h6>Người bán > Duyệt ảnh và hoàn tiền > Thông tin chi tiết</h6>
+        </div>
+    </div>
+    <div style="background-color:#f5f5f5;margin:2px;padding:10px">
+        <div class="card shadow">
+            <div class="card-body row">
+                <div class="col-md-7">
+                    <h6 style="font-weight:700;color:#333;">THÔNG TIN CHUNG</h6>
+                    <form asp-action="Edit" id="editform">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Trạng thái:</label>
+                            <div class="col-sm-8" id="status-div">
+                                <div style="border-radius:10px;color:white;padding:5px;text-align:center;background-color:@if (Model.Status == "Chờ duyệt")
+                                     {
+                                        <text>#3897E9</text>
+                                    }
+                                    else if (Model.Status == "Chờ hoàn tiền")
+                                    {
+                                        <text>#2A2A86</text>
+                                    }
+                                    else if (Model.Status == "Đã hoàn tiền")
+                                    {
+                                        <text>#028E02</text>
+                                    }
+                                    else if(Model.Status == "Từ chối đánh giá")
+                                    {
+                                        <text>#660000</text>
+                                    };width:160px;margin:10px 10px 10px 0px;">@Model.Status</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    
+                                    @if (Model.Status == "Chờ duyệt" || Model.Status == "Chờ hoàn tiền" || Model.Status == "Từ chối đánh giá")
+                                    {
+                                        <button type="button" class="btn btn-primary status-button" data-status="Chờ hoàn tiền" style="background-color:#2A2A86;">Chờ hoàn tiền</button> <br/>
+                                        <button type="button" class="btn btn-primary status-button" data-status="Đã hoàn tiền" style="background-color:#028E02">Đã hoàn tiền</button>
+
+                                        <button type="button" class="btn btn-primary status-button" data-status="Từ chối đánh giá" style="background-color:#660000">Từ chối đánh giá</button>
+                                    }
+                                    else if (Model.Status == "Đã hoàn tiền")
+                                    {
+                                       
+                                    }
+                                    else
+                                    {
+                                         <h6 style="margin-left:20px;color:red">Bạn vui lòng chờ người mua hoàn thành các bước!</h6>
+                                    }
+
+                                </div>
+                                <input type="hidden" id="Status" name="Status" value="@Model.Status" />
+                            </div>
+                        </div>
+                        <div class="form-group row" id="feedbackReason" style="display: none;">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Lý do từ chối: <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <textarea asp-for="SellerFeedback" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Mã đơn hàng:</label>
+                            <div class="col-sm-8">
+                                <h6 style="padding-top:5px">@Model.Id</h6>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Mã DEAL:</label>
+                            <div class="col-sm-8">
+                                <h6 style="padding-top:5px">@Model.DealId</h6>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Tên DEAL:</label>
+                            <div class="col-sm-8">
+                                <h6 style="padding-top:5px">@ViewBag.DealName</h6>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Họ tên khách hàng:</label>
+                            <div class="col-sm-8">
+                                <h6 style="padding-top:5px">@ViewBag.NameUser</h6>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Số tiền hoàn:</label>
+                            <div class="col-sm-8">
+                                <h6 style="padding-top:5px">@ViewBag.RefundPrice đ</h6>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="font-weight:700;color:#333;">Tài khoản hoàn tiền:</label>
+                            <div class="col-sm-8">
+                                <div style="display:flex">
+                                    <h6 style="font-size:20px;">STK: <h6 style="font-size:20px;padding-top:1px;padding-left:10px "> @ViewBag.IdBank</h6></h6>
+                                </div>
+                                <div style="display:flex">
+                                    <h6 style="font-size:20px;">Ngân hàng: <h6 style="font-size:20px;padding-top:1px;padding-left:10px ">@ViewBag.NameBank</h6> </h6>
+                                </div>
+                            </div>
+                        </div>
+                        @if (Model.Status == "Đã hoàn tiền")
+                        {
+
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <input type="submit" value="Xác nhận" class="btn btn-primary" id="submitButton" />
+                            </div>
+                        }
+
+                    </form>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="control-label">Ảnh review sản phẩm: </label>
+                        <br/>
+                        <img src="~/image/@ViewBag.Name" style="width:60%;" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+
+        <script src="~/js/sellerOrder.js"></script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
