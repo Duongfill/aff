@@ -22,7 +22,7 @@
     <WebStackScaffolding_ViewDialogWidth>800</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_LayoutPageFile>~/Areas/Seller/Views/Shared/_Layout_Seller.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_IdentityDialogWidth>650,4</WebStackScaffolding_IdentityDialogWidth>
-    <NameOfLastUsedPublishProfile>D:\Affiliate\Affiliate_Shopee\Affiliate_Shopee\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>D:\aff\Affiliate_Shopee\Properties\PublishProfiles\FolderProfile1.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

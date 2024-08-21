@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Affiliate_Shopee")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f16c54c43c3e04272bf5a9a626cfb4222192268d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Affiliate_Shopee")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Affiliate_Shopee")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

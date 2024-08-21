@@ -1,0 +1,97 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\aff\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|d:\\aff\\affiliate_shopee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|solutionrelative:affiliate_shopee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|d:\\aff\\affiliate_shopee\\areas\\identity\\pages\\account\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|solutionrelative:affiliate_shopee\\areas\\identity\\pages\\account\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|d:\\aff\\affiliate_shopee\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|solutionrelative:affiliate_shopee\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|d:\\aff\\affiliate_shopee\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D5151789-9A26-4C90-B2A6-46A760A96798}|Affiliate_Shopee\\Affiliate_Shopee.csproj|solutionrelative:affiliate_shopee\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\aff\\Affiliate_Shopee\\Program.cs",
+              "RelativeDocumentMoniker": "Affiliate_Shopee\\Program.cs",
+              "ToolTip": "D:\\aff\\Affiliate_Shopee\\Program.cs",
+              "RelativeToolTip": "Affiliate_Shopee\\Program.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAAF8AAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-14T06:30:02.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VerifyOtp.cshtml",
+              "DocumentMoniker": "D:\\aff\\Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\VerifyOtp.cshtml",
+              "RelativeDocumentMoniker": "Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\VerifyOtp.cshtml",
+              "ToolTip": "D:\\aff\\Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\VerifyOtp.cshtml",
+              "RelativeToolTip": "Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\VerifyOtp.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-14T03:16:56.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "D:\\aff\\Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "D:\\aff\\Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAKcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-14T03:14:43.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\aff\\Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "D:\\aff\\Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "Affiliate_Shopee\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAAGoAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-14T02:49:18.66Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

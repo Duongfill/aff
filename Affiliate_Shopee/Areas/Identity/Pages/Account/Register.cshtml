@@ -38,9 +38,9 @@
                                 <label asp-for="Input.PhoneNumber">Số điện thoại: <sup style="color:red">*</sup></label>
                                 <div class="form-row">
                                     <div class="col" style="display:flex;justify-content:space-between">
-                                        <input asp-for="Input.PhoneNumber" class="form-control" style="width:75%"/>
+                                        <input asp-for="Input.PhoneNumber" class="form-control" />
                                         <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> 
-                                        <button type="button" id="sendOtpButton" class="btn btn-secondary" style="border-radius:10px">Gửi OTP</button>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -58,10 +58,36 @@
                                 <label asp-for="Input.NameBank">Tên ngân hàng: <sup style="color:red">*</sup></label>
                                 <select asp-for="Input.NameBank" class="form-control">
                                     <option value="">-- Chọn ngân hàng --</option>
-                                    <option value="MB BANK">Ngân hàng quân đội - MB BANK</option>
-                                    <option value="Bank2">Ngân hàng</option>
-                                    <option value="Bank3">Bank 3</option>
-                                    <!-- Add more options as needed -->
+                                    <option value="MB BANK">Ngân hàng Quân Đội - MB BANK</option>
+                                    <option value="VIETCOMBANK">Ngân hàng Ngoại Thương Việt Nam - VIETCOMBANK</option>
+                                    <option value="VIETINBANK">Ngân hàng Công Thương Việt Nam - VIETINBANK</option>
+                                    <option value="AGRIBANK">Ngân hàng Nông Nghiệp & Phát Triển Nông Thôn Việt Nam - AGRIBANK</option>
+                                    <option value="BIDV">Ngân hàng Đầu Tư và Phát Triển Việt Nam - BIDV</option>
+                                    <option value="ACB">Ngân hàng Á Châu - ACB</option>
+                                    <option value="SACOMBANK">Ngân hàng Sài Gòn Thương Tín - SACOMBANK</option>
+                                    <option value="TECHCOMBANK">Ngân hàng Kỹ Thương Việt Nam - TECHCOMBANK</option>
+                                    <option value="VPBANK">Ngân hàng Việt Nam Thịnh Vượng - VPBANK</option>
+                                    <option value="HDBANK">Ngân hàng Phát Triển Thành Phố Hồ Chí Minh - HDBANK</option>
+                                    <option value="TPBANK">Ngân hàng Tiên Phong - TPBANK</option>
+                                    <option value="VIB">Ngân hàng Quốc Tế - VIB</option>
+                                    <option value="EXIMBANK">Ngân hàng Xuất Nhập Khẩu Việt Nam - EXIMBANK</option>
+                                    <option value="SHB">Ngân hàng Sài Gòn - Hà Nội - SHB</option>
+                                    <option value="MSB">Ngân hàng Hàng Hải Việt Nam - MSB</option>
+                                    <option value="OCB">Ngân hàng Phương Đông - OCB</option>
+                                    <option value="SCB">Ngân hàng Sài Gòn - SCB</option>
+                                    <option value="SEABANK">Ngân hàng Đông Nam Á - SEABANK</option>
+                                    <option value="PVCOMBANK">Ngân hàng Đại Chúng Việt Nam - PVCOMBANK</option>
+                                    <option value="NAMABANK">Ngân hàng Nam Á - NAMABANK</option>
+                                    <option value="NCB">Ngân hàng Quốc Dân - NCB</option>
+                                    <option value="ABBank">Ngân hàng An Bình - ABBANK</option>
+                                    <option value="SAIGONBANK">Ngân hàng Sài Gòn Công Thương - SAIGONBANK</option>
+                                    <option value="VIETBANK">Ngân hàng Việt Nam Thương Tín - VIETBANK</option>
+                                    <option value="PG BANK">Ngân hàng Xăng Dầu Petrolimex - PG BANK</option>
+                                    <option value="OCEANBANK">Ngân hàng Đại Dương - OCEANBANK</option>
+                                    <option value="BAOVIETBANK">Ngân hàng Bảo Việt - BAOVIETBANK</option>
+                                    <option value="KIENLONGBANK">Ngân hàng Kiên Long - KIENLONGBANK</option>
+                                    <option value="VANXUANBANK">Ngân hàng Liên Việt - VANXUANBANK</option>
+                                    <option value="LIENVIETPOSTBANK">Ngân hàng Bưu Điện Liên Việt - LIENVIETPOSTBANK</option>
                                 </select>
                                 <span asp-validation-for="Input.NameBank" class="text-danger"></span>
                             </div>
@@ -71,10 +97,10 @@
                                 <span asp-validation-for="Input.IdBank" class="text-danger"></span>
                             </div>
                             <input type="hidden" id="fmcToken" asp-for="Input.FmcToken" name="Input.FmcToken" />
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary" style="width:100%; border-radius:10px; background-color:#2742A2">Đăng ký</button>
                         </form>
                         <p>
-                            Bạn đã có tài khoản? <a asp-page="/Account/Login" asp-area="Identity">Log in</a>.
+                            Bạn đã có tài khoản? <a asp-page="/Account/Login" asp-area="Identity">Đăng nhập</a>.
                         </p>
                     </section>
                 </div>

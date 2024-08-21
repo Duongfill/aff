@@ -13048,11 +13048,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Affiliate\\Affiliate_Shopee\\Affiliate_Shopee\\Affiliate_Shopee.csproj",
+      "projectUniqueName": "D:\\aff\\Affiliate_Shopee\\Affiliate_Shopee.csproj",
       "projectName": "Affiliate_Shopee",
-      "projectPath": "D:\\Affiliate\\Affiliate_Shopee\\Affiliate_Shopee\\Affiliate_Shopee.csproj",
+      "projectPath": "D:\\aff\\Affiliate_Shopee\\Affiliate_Shopee.csproj",
       "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
-      "outputPath": "D:\\Affiliate\\Affiliate_Shopee\\Affiliate_Shopee\\obj\\",
+      "outputPath": "D:\\aff\\Affiliate_Shopee\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",

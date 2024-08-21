@@ -1,21 +1,38 @@
 ﻿@page
 @model Affiliate_Shopee.Areas.Identity.Pages.Account.VerifyOtpModel
 @{
+    ViewData["Title"] = "VerifyOTP";
 }
-<h1>@ViewData["Title"]</h1>
 
-<div class="row">
-    <div class="col-md-6">
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="Input.OtpCode" class="control-label"></label>
-                <input asp-for="Input.OtpCode" class="form-control" />
-                <span asp-validation-for="Input.OtpCode" class="text-danger"></span>
+<link href="~/css/bank_create.css" rel="stylesheet">
+<link rel="stylesheet" href="~/css/homeIndex.css" />
+<section class="awe-section-3">
+    <div class="container">
+        <div id="border">
+            <div class="row">
+                <div class="col-md-6 text-center d-none d-md-block" style="background-color:#DEEBFF;height:100%;border-radius:10px 0px 0px 10px">
+                    <div id="navbarsmo" style="margin-bottom:60%;margin-top:20%">
+                        <img id="logosmo" src="/image/Asset 7.png" style="display: inline-block" alt="Logo" />
+                        <h3>HỆ THỐNG GIAO DỊCH MUA HÀNG KHÔNG ĐAU VÍ</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block" style="background-color:#fff;border-radius:0px 10px 10px 0px">
+                    <form method="post">
+                        <div class="form-group">
+                            <label asp-for="Input.OtpCode" class="control-label">Mã OTP</label>
+                            <input asp-for="Input.OtpCode" class="form-control" />
+                            <span asp-validation-for="Input.OtpCode" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;background-color:#2742A2;border-radius:10px">
+                            Xác nhận
+                        </button>
+                    </form>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Xác nhận</button>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

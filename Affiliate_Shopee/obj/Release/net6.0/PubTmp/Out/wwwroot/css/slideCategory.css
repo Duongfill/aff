@@ -1,0 +1,42 @@
+﻿#dealCategoriesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.deal-item {
+    flex: 0 0 16.6667%; /* 100% / 6 = 16.6667% */
+    display: none;
+}
+
+    .deal-item.active {
+        display: block;
+    }
+
+.dg-fix {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between; /* Căn giữa theo chiều dọc */
+}
+
+.dg-pagination {
+    position: absolute;
+    display: flex;
+    width: 98%;
+    justify-content: space-between;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dg-fixbutton {
+    background-color: #a4a2a2;
+    border: none;
+    color: white;
+    line-height: 0 !important;
+    padding: 0 !important;
+    width: 20px;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}

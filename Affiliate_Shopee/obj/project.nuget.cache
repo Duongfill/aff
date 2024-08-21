@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iJ7PxZhKauE=",
+  "dgSpecHash": "qj5S4If05pE=",
   "success": true,
-  "projectFilePath": "D:\\Affiliate\\Affiliate_Shopee\\Affiliate_Shopee\\Affiliate_Shopee.csproj",
+  "projectFilePath": "D:\\aff\\Affiliate_Shopee\\Affiliate_Shopee.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\acer\\.nuget\\packages\\firebase.auth\\1.0.0\\firebase.auth.1.0.0.nupkg.sha512",
     "C:\\Users\\acer\\.nuget\\packages\\firebaseadmin\\2.2.0\\firebaseadmin.2.2.0.nupkg.sha512",

@@ -62,12 +62,8 @@ builder.Services.AddSession(options =>
 });
 var basePath = AppContext.BaseDirectory;
 
-
-// Initialize Firebase Admin SDK
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
